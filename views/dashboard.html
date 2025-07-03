@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard - E-commerce</title>
+  <style>
+    body { font-family: sans-serif; background: #f3f7fa; margin: 0; padding: 20px; }
+    header { display: flex; justify-content: space-between; align-items: center; }
+    nav { background: #333; padding: 10px; }
+    nav a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    #conteudo {
+      background: white;
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      min-height: 100px;
+      font-size: 18px;
+      color: #444;
+    }
+    a.logout {
+      color: #c00;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    a.logout:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dashboard - E-commerce</h1>
+    <a href="/logout" class="logout">Sair</a>
+  </header>
+  <nav>
+    <a id="menu-categoria">Categoria</a>
+    <a id="menu-cliente">Cliente</a>
+    <a id="menu-produto">Produto</a>
+  </nav>
+  <section id="conteudo">
+    Selecione uma opção no menu acima.
+  </section>
+
+  <script>
+    const conteudo = document.getElementById('conteudo');
+    document.getElementById('menu-categoria').onclick = () => {
+      conteudo.textContent = "Nenhuma Categoria criada até o momento, volte mais tarde!";
+    };
+    document.getElementById('menu-cliente').onclick = () => {
+      conteudo.textContent = "Página de Clientes em manutenção, volte mais tarde!";
+    };
+    document.getElementById('menu-produto').onclick = () => {
+      conteudo.textContent = "Nenhum Produto cadastrado no momento, volte mais tarde!";
+    };
+  </script>
+</body>
+</html>
