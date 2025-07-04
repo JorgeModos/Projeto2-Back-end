@@ -6,17 +6,23 @@ function showLogin(req, res) {
 
 async function login(req, res) {
   const { username, password } = req.body;
-  const db = await conectar();
+  try {
+    const db = await conectar();
+    const user = await db.collection('users').findOne({ username, password });
 
-  const user = await db.collection('users').findOne({ username, password });
-
-  if (user) {
-    req.session.user = user;
-    res.redirect('/dashboard');
-  } else {
-    res.send('<script>alert("Usuário ou senha inválidos!"); window.location="/";</script>');
+    if (user) {
+      req.session.user = user;
+      res.redirect('/dashboard');
+    } else {
+      res.send('<script>alert("Usuário ou senha inválidos!"); window.location="/";</script>');
+    }
+  } catch (err) {
+    console.error('Erro no login:', err);
+    res.send('<script>alert("Erro no login, tente novamente."); window.location="/";</script>');
   }
 }
+
+
 
 function checkAuth(req, res, next) {
   if (req.session && req.session.user) {
